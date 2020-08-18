@@ -1,11 +1,14 @@
 {
+  "homepage": "http://evanbacon.github.io/React-Native-image-sharing-app",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "deploy": "gh-pages -d web-build",
+    "predeploy": "expo build:web"
   },
   "dependencies": {
     "anonymous-files": "^1.0.1",
@@ -20,7 +23,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
-    "babel-preset-expo": "~8.1.0"
+    "babel-preset-expo": "~8.1.0",
+    "gh-pages": "^3.1.0"
   },
   "private": true
 }

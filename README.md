@@ -1,2 +1,2 @@
 # React Native - Image sharing app
-![Image sharing app](/app.jpeg)
+![Image sharing app](/assets/app.jpeg)
