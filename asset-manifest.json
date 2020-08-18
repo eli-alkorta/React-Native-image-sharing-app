@@ -1,0 +1,23 @@
+{
+  "files": {
+    "app.js": "/React-Native-image-sharing-app/static/js/app.6bf45d16.chunk.js",
+    "app.js.map": "/React-Native-image-sharing-app/static/js/app.6bf45d16.chunk.js.map",
+    "runtime~app.js": "/React-Native-image-sharing-app/static/js/runtime~app.230be7a5.js",
+    "runtime~app.js.map": "/React-Native-image-sharing-app/static/js/runtime~app.230be7a5.js.map",
+    "static/js/2.a8143d37.chunk.js": "/React-Native-image-sharing-app/static/js/2.a8143d37.chunk.js",
+    "static/js/2.a8143d37.chunk.js.map": "/React-Native-image-sharing-app/static/js/2.a8143d37.chunk.js.map",
+    "favicon-16.png": "/React-Native-image-sharing-app/favicon-16.png",
+    "favicon-32.png": "/React-Native-image-sharing-app/favicon-32.png",
+    "favicon.ico": "/React-Native-image-sharing-app/favicon.ico",
+    "index.html": "/React-Native-image-sharing-app/index.html",
+    "manifest.json": "/React-Native-image-sharing-app/manifest.json",
+    "serve.json": "/React-Native-image-sharing-app/serve.json",
+    "static/js/2.a8143d37.chunk.js.LICENSE.txt": "/React-Native-image-sharing-app/static/js/2.a8143d37.chunk.js.LICENSE.txt",
+    "static/media/logo.jpg": "/React-Native-image-sharing-app/static/media/logo.8f116e5f.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime~app.230be7a5.js",
+    "static/js/2.a8143d37.chunk.js",
+    "static/js/app.6bf45d16.chunk.js"
+  ]
+}
