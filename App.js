@@ -1,15 +1,70 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Platform, Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import logo from './assets/logo.jpg'; 
+import * as ImagePicker from 'expo-image-picker';
+import * as Sharing from 'expo-sharing'; 
+import uploadToAnonymousFilesAsync from 'anonymous-files'; 
+
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [selectedImage, setSelectedImage] = React.useState(null);
+
+  let openImagePickerAsync = async () => {
+    let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      alert('Permission to access camera roll is required!');
+      return;
+    }
+
+    let pickerResult = await ImagePicker.launchImageLibraryAsync();
+    if (pickerResult.cancelled === true) {
+      return;
+    }
+
+    if (Platform.OS === 'web') {
+      let remoteUri = await uploadToAnonymousFilesAsync(pickerResult.uri);
+      setSelectedImage({ localUri: pickerResult.uri, remoteUri });
+    } else {
+      setSelectedImage({ localUri: pickerResult.uri, remoteUri: null });
+    } 
+  };
+
+  let openShareDialogAsync = async () => {
+    if (!(await Sharing.isAvailableAsync())) {
+      alert(`The image is available for sharing at: ${selectedImage.remoteUri}`);
+      return;
+    }
+
+    Sharing.shareAsync(selectedImage.localUri);
+  }; 
+
+  if (selectedImage !== null) {
+    return (
+      <View style={styles.container}>
+        <Image
+          source={{ uri: selectedImage.localUri }}
+          style={styles.thumbnail}
+        />
+         <Text style={styles.instructions} >Para compartir una foto con tus amigos, pulsa el botón</Text>
+         <TouchableOpacity onPress={openShareDialogAsync} style={styles.button}>
+          <Text style={styles.buttonText}>Comparte esta foto</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+    return (
+      <View style={styles.container}>
+        <Image source={logo} style={styles.logo}/>
+          <Text style={styles.instructions} >Para compartir una foto con tus amigos, pulsa el botón</Text>
+        <TouchableOpacity onPress={openImagePickerAsync} style={styles.button}>
+          <Text style={styles.buttonText}>Escoge una foto</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -18,4 +73,30 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  logo: {
+    width: 305,
+    height: 159,
+    marginBottom: 10,
+  },
+  instructions: {
+    marginTop: 10,
+    color: '#888',
+    fontSize: 18,
+    marginHorizontal: 15,
+  }, 
+  button: {
+    marginTop: 20,
+    backgroundColor: "gray",
+    padding: 20,
+    borderRadius: 5,
+  },
+  buttonText: {
+    fontSize: 20,
+    color: '#fff',
+  }, 
+  thumbnail: {
+    width: 300,
+    height: 300,
+    resizeMode: "contain"
+  }
 });
